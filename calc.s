@@ -29,6 +29,7 @@ Start_DSP:
          MOVE ArrayFirst, A1
 
 
+
          MOVE 5,R1.L /*const*/
          MOVE 5,R3.L /*const*/
 
@@ -39,6 +40,18 @@ Start_DSP:
                 SUBL R0.L,R1.L,R2.L /*const J*/
 
                 DO R2,jj
+
+                        MOVE ArrayFirst, A1
+
+                        DO R0,miss
+                                DO 5, litle
+                                litle: (A1)+
+                        miss: NOP
+
+                        DO R10,mm
+                        mm: (A1)+
+
+
                         MOVE ArrayFirst, A3 /* указатель на первый элемент */
                         MOVE (A1),R4.L
 
@@ -61,11 +74,11 @@ Start_DSP:
 
                        ADDL 1,R10.L,R10.L
 
-                       (A1)+
+
                 jj:NOP
                 ADDL 1,R0.L,R0.L
                 MOVE 1,R10.L /* J - not a const */
-                (A1)+
+
         ii:NOP
 
         STOP
